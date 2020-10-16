@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './App'; //app.js
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
+  //get the div identified root and put in other file called app which come from app.js
   document.getElementById('root')
 );
 
