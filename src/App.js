@@ -11,8 +11,10 @@ import { Navbar, Nav } from 'react-bootstrap';
 
 //import from react-router-dom the BrowserRouter, switch statement for swiching between different components and Route
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Create } from './components/create';
+import { Read } from './components/read';
 
-//class App that extends that will import class from react called Component (Line 1)
+//class App that extends and will import class from react called Component
 class App extends Component {
   // render method with no arguments and will wrap entire return
   render() {
@@ -23,7 +25,6 @@ class App extends Component {
           <Navbar bg="primary" variant="dark">
             <Navbar.Brand href="#home">Navbar</Navbar.Brand>
             <Nav className="mr-auto">
-
               {
                 //another way to add Comment
               }
@@ -36,12 +37,12 @@ class App extends Component {
           <br />
           {
             //Route and the path that is specify the url that is going to be
-            //in this case Content component and the path has to be exact for displaying the component
+            //In this case Content component and the path has to be exact for displaying the component
           }
           <Switch>
             <Route path='/' component={Content} exact />
-            <Route path='/create' component={Header} exact />
-            <Route path='/read' component={Footer} exact />
+            <Route path='/create' component={Create} exact />
+            <Route path='/read' component={Read} exact />
           </Switch>
         </div>
       </Router>
