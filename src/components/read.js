@@ -1,36 +1,32 @@
 import React from 'react';
 import { Movies } from './movies';
+import axios from 'axios';
 
 //export to use this class elsewhere
 export class Read extends React.Component {
 
-    //object state that contains object movies
+    //Object state that contains object movies
     state = {
         //object movies
-        movies: [
-            {
-                "Title": "Avengers: Infinity War",
-                "Year": "2018",
-                "imdbID": "tt4154756",
-                "Type": "movie",
-                "Poster": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg"
-            },
-            {
-                "Title": "Captain America: Civil War",
-                "Year": "2016",
-                "imdbID": "tt3498820",
-                "Type": "movie",
-                "Poster": "https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_SX300.jpg"
-            },
-            {
-                "Title": "Charlie Wilson's War",
-                "Year": "2007",
-                "imdbID": "tt0472062",
-                "Type": "movie",
-                "Poster": "https://m.media-amazon.com/images/M/MV5BMTgwMDgwMDc4MF5BMl5BanBnXkFtZTYwOTU3MDM4._V1_SX300.jpg"
-            }
-        ]
+        movies: []
     };
+    //Method that its called everytime that component is become active in the view
+    componentDidMount() {
+        //axios will go and get, or retrieve some information about resourse
+        axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032')
+            .then(
+                //Anonimous Method that will take the response path and will update the array movies with returned data 
+                (response) => {
+                    this.setState({ movies: response.data.Search })
+                })
+            //if problem then catch will display error
+            .catch((error) => {
+                console.log(error)
+            }
+
+            );
+
+    }
     //render method
     render() {
         //returning Read Component

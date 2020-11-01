@@ -26,7 +26,7 @@ class App extends Component {
             <Navbar.Brand href="#home">Navbar</Navbar.Brand>
             <Nav className="mr-auto">
               {
-                //another way to add Comment
+                //another way to add Comment for multilines
               }
               {/*change the url to required*/}
               <Nav.Link href="/">Home</Nav.Link>
