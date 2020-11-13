@@ -13,11 +13,11 @@ export class Read extends React.Component {
     //Method that its called everytime that component is become active in the view
     componentDidMount() {
         //axios will go and get, or retrieve some information about resourse
-        axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032')
+        axios.get('http://localhost:4000/api/movies')
             .then(
                 //Anonimous Method that will take the response path and will update the array movies with returned data 
                 (response) => {
-                    this.setState({ movies: response.data.Search })
+                    this.setState({ movies: response.data.movies })
                 })
             //if problem then catch will display error
             .catch((error) => {

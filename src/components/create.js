@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 //export to use this class elsewhere in this case inherits from React.Component
 export class Create extends React.Component {
@@ -44,6 +45,19 @@ export class Create extends React.Component {
         alert("Movie: " + this.state.Title
             + " " + this.state.Year
             + " " + this.state.Poster);
+        const newMovie = {
+            title: this.state.Title,
+            year: this.state.Year,
+            poster: this.state.Poster
+        }
+        //method post wich send's data to the server using post url and passing the newMovie object 
+        axios.post('http://localhost:4000/api/movies', newMovie)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err)
+            });
     }
 
     //Render method
