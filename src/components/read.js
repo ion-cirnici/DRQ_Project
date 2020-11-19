@@ -17,14 +17,12 @@ export class Read extends React.Component {
             .then(
                 //Anonimous Method that will take the response path and will update the array movies with returned data 
                 (response) => {
-                    this.setState({ movies: response.data.movies })
+                    this.setState({ movies: response.data})
                 })
             //if problem then catch will display error
             .catch((error) => {
                 console.log(error)
-            }
-
-            );
+            });
 
     }
     //render method

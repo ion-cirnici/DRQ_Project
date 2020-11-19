@@ -49,7 +49,7 @@ export class Create extends React.Component {
             title: this.state.Title,
             year: this.state.Year,
             poster: this.state.Poster
-        }
+        };
         //method post wich send's data to the server using post url and passing the newMovie object 
         axios.post('http://localhost:4000/api/movies', newMovie)
             .then((res) => {
