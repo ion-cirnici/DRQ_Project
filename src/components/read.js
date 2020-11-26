@@ -10,6 +10,25 @@ export class Read extends React.Component {
         //object movies
         movies: []
     };
+    //constructor that will be called by delete method
+    constructor() {
+        super();
+        this.ReloadData = this.ReloadData.bind(this);
+
+    }
+    //ReloadData method that will go of on the database and get all movies from the database
+    ReloadData() {
+        axios.get('http://localhost:4000/api/movies')
+            .then(
+                //Anonimous Method that will take the response path and will update the array movies with returned data 
+                (response) => {
+                    this.setState({ movies: response.data })
+                })
+            //if problem then catch will display error
+            .catch((error) => {
+                console.log(error)
+            });
+    }
     //Method that its called everytime that component is become active in the view
     componentDidMount() {
         //axios will go and get, or retrieve some information about resourse
@@ -17,7 +36,7 @@ export class Read extends React.Component {
             .then(
                 //Anonimous Method that will take the response path and will update the array movies with returned data 
                 (response) => {
-                    this.setState({ movies: response.data})
+                    this.setState({ movies: response.data })
                 })
             //if problem then catch will display error
             .catch((error) => {
@@ -25,6 +44,7 @@ export class Read extends React.Component {
             });
 
     }
+
     //render method
     render() {
         //returning Read Component
@@ -32,7 +52,7 @@ export class Read extends React.Component {
             <div>
                 <h1>Read: This is the Read Component.</h1>
                 {/*embed the movie Component and inside curley brackets pass movies as a part of object movies */}
-                <Movies movies={this.state.movies}></Movies>
+                <Movies movies={this.state.movies} ReloadData={this.ReloadData}></Movies>
             </div>
         );
     }
