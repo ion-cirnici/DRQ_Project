@@ -2,13 +2,14 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 //export to use this class elsewhere
 export class MovieItem extends React.Component {
 
     //constructor
     constructor() {
-        super();
+        super();//invoked
         //this instance of DeleteMovie
         this.DeleteMovie = this.DeleteMovie.bind(this);
     }
@@ -47,9 +48,11 @@ export class MovieItem extends React.Component {
                         </blockquote>
                         {/*Delete Button on click event will call method that will go to the server findByIdAndDelete and delete record*/}
                         <Button variant="danger" onClick={this.DeleteMovie}>Delete</Button>
+                        {/*Link to movie referencing on the unique identifier ID*/}
+                        <Link to={"/edit/" + this.props.movie._id} className="btn btn-primary">Update</Link>
                     </Card.Body>
                 </Card>
             </div>
-        );
-    }
-}
+        );//return End
+    }//render End
+}//class MovieItem End

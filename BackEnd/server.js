@@ -40,7 +40,7 @@ let MovieModel = mongoose.model("movies", movieSchema);
 
 //returns the following JSON data when a GET request is made to /api/movies
 app.get('/api/movies', (req, res) => {
- 
+
     //model that pass no arguments but will find all the database and send it back
     MovieModel.find((err, data) => {
         res.json(data);
@@ -58,7 +58,7 @@ app.delete('/api/movies/:id', (req, res) => {
         res.send(data);
     })
 })
-
+//returns the following JSON data when a GET request is made to /api/movies/id and return as url
 app.get('/api/movies/:id', (req, res) => {
     console.log(req.params.id);
     //method that will listen for get (4000/api/movies/:id) and returned back the movies that has at that id
@@ -66,6 +66,19 @@ app.get('/api/movies/:id', (req, res) => {
         res.json(data);
     })
 })
+
+//method that listen for put that has /api/movoes/:id url 
+app.put('/api/movies/:id', (req, res) => {
+    console.log("Update movie: " + req.params.id);
+    console.log(req.body);
+
+    //Asynchronised call into database finding record within id and update and send back some data
+    MovieModel.findByIdAndUpdate(req.params.id, req.body, { new: true },
+        (err, data) => {
+            res.send(data);
+        })
+})
+
 
 //post request at /api/movies that is taking the body that is passed up and included
 app.post('/api/movies', (req, res) => {
@@ -82,6 +95,6 @@ app.post('/api/movies', (req, res) => {
     //send message item added
     res.send('item Added');
 })
-app.listen(port, () => {
+app.listen(port, () => {// app listen at port 4000
     console.log(`Example app listening at http://localhost:${port}`)
 })
