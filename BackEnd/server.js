@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = 4000
 const cors = require('cors');
+const path = require('path');
 
 //body-parser for post request
 const bodyParser = require('body-parser');
@@ -17,6 +18,9 @@ app.use(function (req, res, next) {
         "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+//specifying where are: built and static folders 
+app.use(express.static(path.join(__dirname, '../build')))
+app.use('/static', express.static(path.join(__dirname, 'build//static')));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -79,7 +83,6 @@ app.put('/api/movies/:id', (req, res) => {
         })
 })
 
-
 //post request at /api/movies that is taking the body that is passed up and included
 app.post('/api/movies', (req, res) => {
     console.log('Movie Recieved!');
@@ -94,6 +97,10 @@ app.post('/api/movies', (req, res) => {
     })
     //send message item added
     res.send('item Added');
+})
+//all other roots send index.html file back
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/../build/index.html'));
 })
 app.listen(port, () => {// app listen at port 4000
     console.log(`Example app listening at http://localhost:${port}`)
