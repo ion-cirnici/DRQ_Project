@@ -5,14 +5,14 @@ import { Button } from 'react-bootstrap'; // import button from bootstrap
 //export to use this class elsewhere in this case inherits from React.Component
 export class ToDoList extends React.Component {
 
-    
+    //constructor
     constructor() {
         super();
         this.onSubmit = this.onSubmit.bind(this);
-        this.onChangeAddNote = this.onChangeAddNote.bind(this); // bind when called, has this keyword set to the provided value
+        this.onChangeAddNote = this.onChangeAddNote.bind(this); // tide when called, this keyword will set to the provided value
        
 
-        this.state = { // store property values that belongs to the component
+        this.state = { // will store property values that belongs to the component
             note: ''
           
         }
@@ -24,27 +24,27 @@ export class ToDoList extends React.Component {
 
    
     onSubmit() { // event occurs when a form is submitted
-        alert('Note added' // alert pops up with Note name, rIngredients, rInstructions and rImage
-            + '\nName:  ' + this.state.name);
+        alert('Note added' // alert pops up with Note
+            + '\note:  ' + this.state.note);
 
         const newNote = { // newNote object
-            name: this.state.name
+            note: this.state.note
         }
 
         axios.post('http://localhost:4000/api/notes', newNote) // read data/send object to server
             .then((res) => {
-                console.log(res); // responce
+                console.log(res); // responce positive
             })
             .catch((err) => {
-                console.log(err); // error
+                console.log(err); //response error
             });
-    }// END onSubmit
+    }// end onSubmit
 
-    render() { // method of react - tells react what to display
+    render() { // method which tells react what to display
         return ( //output of the method
             <div>
                 <h3>AddNote</h3>
-                <form onSubmit={this.onSubmit}> {/* form used to collect user input*/}
+                <form onSubmit={this.onSubmit}> {/* form which is used to collect user input*/}
                    
                     <div className="form-group">
                       
@@ -55,6 +55,6 @@ export class ToDoList extends React.Component {
                     <Button variant="outline-info" type="submit">Add Note</Button>
                 </form>
             </div>
-        );// END return
-    }// END render
+        );// end return
+    }// end render
 }
