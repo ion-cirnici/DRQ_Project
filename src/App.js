@@ -5,14 +5,15 @@ import { Header } from './components/header';
 import { Footer } from './components/footer';
 import { Content } from './components/content';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import transparentLogo from './assets/transparentLogo.png';//loge importing
 
 //importing Navbar and Nav for Navigation from react bootstrap
 import { Navbar, Nav } from 'react-bootstrap';
 
 //import from react-router-dom the BrowserRouter, switch statement for swiching between different components and Route
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Create } from './components/create';
-import { Read } from './components/read';
+import { AddCars } from './components/addCars';
+import { AllCars } from './components/allCars';
 import { Edit } from './components/edit';
 
 //class App that extends and will import class from react called Component
@@ -23,16 +24,16 @@ class App extends Component {
       //BrowserRouter that is used as Router (line 13) that is wrapping the entire div element
       <Router>
         <div className="App">
-          <Navbar bg="primary" variant="dark">
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Navbar bg="secondary" variant="dark">
+          <Navbar.Brand href="/"><img src={transparentLogo} alt="logo" height="60" width="60"/></Navbar.Brand>
             <Nav className="mr-auto">
               {
                 //another way to add Comment for multilines
               }
               {/*change the url to required*/}
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/read">Read</Nav.Link>
-              <Nav.Link href="/create">Create</Nav.Link>
+              <Nav.Link href="/allCars">All Cars</Nav.Link>
+              <Nav.Link href="/addCars">Add Cars</Nav.Link>
             </Nav>
           </Navbar>
           <br />
@@ -42,8 +43,8 @@ class App extends Component {
           }
           <Switch>
             <Route path='/' component={Content} exact />
-            <Route path='/create' component={Create} />
-            <Route path='/read' component={Read} />
+            <Route path='/addCars' component={AddCars} />
+            <Route path='/allCars' component={AllCars} />
             <Route path='/edit/:id' component={Edit}></Route>
           </Switch>
         </div>

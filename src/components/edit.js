@@ -9,80 +9,72 @@ export class Edit extends React.Component {
         super();
         //all events need to be bind
         this.onSubmit = this.onSubmit.bind(this);
-        this.onChangeTitle = this.onChangeTitle.bind(this);
-        this.onChangeYear = this.onChangeYear.bind(this);
-        this.onChangePoster = this.onChangePoster.bind(this);
+        this.onChangeReg = this.onChangeReg.bind(this);
+        this.onChangeMake = this.onChangeMake.bind(this);
+        this.onChangeModel = this.onChangeModel.bind(this);
         //state set to blank
         this.state = {
-            Title: '',
-            Year: '',
-            Poster: ''
+            Reg: '',
+            Make: '',
+            Model: ''
         }
     }//Constructor End
 
     componentDidMount() {
         console.log(this.props.match.params.id);
         //get request that is envoking app.get method from server.js finding document by its id which is passing part of the url and returning
-        axios.get('http://localhost:4000/api/movies/' + this.props.match.params.id)
+        axios.get('http://localhost:4000/api/cars/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     //data based on the request for display
                     _id: response.data._id,
-                    Title: response.data.title,
-                    Year: response.datayear,
-                    Poster: response.data.poster
+                    Reg: response.data.reg,
+                    Make: response.data.make,
+                    Model: response.data.model
                 })
             })
             .catch((error) => {
                 console.log(error);
             });
     }
-    //Method onChangeTitle with argument (e) and when value changes will update the state
-    onChangeTitle(e) {
+    //Method onChangeReg with argument (e) and when value changes will update the state
+    onChangeReg(e) {
         this.setState({
-            Title: e.target.value
+            Reg: e.target.value
         });
     }
-    //onChangeYear Method
-    onChangeYear(e) {
+    //onChangeMake Method
+    onChangeMake(e) {
         this.setState({
-            Year: e.target.value
+            Make: e.target.value
         });
 
     }
-    //onChangePoster Method
-    onChangePoster(e) {
+    //onChangeModel Method
+    onChangeModel(e) {
         this.setState({
-            Poster: e.target.value
+            Model: e.target.value
         })
     }
     //onSubmit Method
     onSubmit(e) {
         e.preventDefault();
-        alert("Movie: " + this.state.Title
-            + " " + this.state.Year
-            + " " + this.state.Poster);
-        const newMovie = {
-            title: this.state.Title,
-            year: this.state.Year,
-            poster: this.state.Poster,
+        alert("Car: " + this.state.Reg
+            + " " + this.state.Make
+            + " " + this.state.Model);
+        const newCar = {
+            reg: this.state.Reg,
+            make: this.state.Make,
+            model: this.state.Model,
             _id: this.state._id
         }
-        //passing up the new object: newMovie
-        axios.put('http://localhost:4000/api/movies/' + this.state._id, newMovie)
+        //passing up the new object: newCar
+        axios.put('http://localhost:4000/api/cars/' + this.state._id, newCar)
             .then(res => {
                 console.log(res.data)
             })
             .catch();
 
-        // //method post wich send's data to the server using post url and passing the newMovie object 
-        // axios.post('http://localhost:4000/api/movies', newMovie)
-        //     .then((res) => {
-        //         console.log(res);
-        //     })
-        //     .catch((err) => {
-        //         console.log(err)
-        //     });
     }
 
     //Render method
@@ -90,37 +82,37 @@ export class Edit extends React.Component {
         return (
             <div className='App'>
                 <form onSubmit={this.onSubmit}>
-                    {/*Label Movie Add Movie Title */}
+                    {/*Label Car Add Car Reg */}
                     <div className="form-group">
-                        <label>Add Movie Title:</label>
+                        <label>Edit Registration :</label>
                         <input type='text'
                             className='form-control'
-                            //Methods initial value and onChange event onChangeTitle
-                            value={this.state.Title}
-                            onChange={this.onChangeTitle}></input>
+                            //Methods initial value and onChange event onChangeReg
+                            value={this.state.Reg}
+                            onChange={this.onChangeReg}></input>
                     </div>
-                    {/*Label Movie Year with input text */}
+                    {/*Label Car Year with input text */}
                     <div className="form-group">
-                        <label>AddMovie Year: </label>
+                        <label>Edit Make: </label>
                         <input type='text'
                             className='form-control'
-                            value={this.state.Year}
-                            onChange={this.onChangeYear}></input>
+                            value={this.state.Make}
+                            onChange={this.onChangeMake}></input>
                     </div>
-                    {/*Label Movie Poster with input text */}
+                    {/*Label Car Model with input text */}
                     <div className='form-group'>
-                        <label>Movie Poster: </label>
+                        <label>Edit Model: </label>
                         <textarea type='text'
                             className='form-control'
-                            value={this.state.Poster}
-                            onChange={this.onChangePoster}>
+                            value={this.state.Model}
+                            onChange={this.onChangeModel}>
 
                         </textarea>
                     </div>
-                    {/*Adit Movie Button */}
+                    {/*Adit Car Button */}
                     <div className="form-group">
                         <input type='submit'
-                            value='Edit Movie'
+                            value='Edit Car'
                             className='btn btn-primary'></input>
                     </div>
                 </form>

@@ -1,4 +1,5 @@
 import React from 'react';
+import CarPicture from '../assets/CarPic.png'
 
 //export to use this class elsewhere
 export class Content extends React.Component {
@@ -7,8 +8,7 @@ export class Content extends React.Component {
         //returning content component
         return (
             <div>
-                <h1>Home: Hello World!</h1>
-                <h2>It is {new Date().toLocaleTimeString()}.</h2>
+                <img src={CarPicture} alt="CarPic" height="100%" width="100%"></img>
             </div>
         );
 
