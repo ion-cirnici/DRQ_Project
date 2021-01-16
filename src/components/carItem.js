@@ -50,7 +50,7 @@ export class CarItem extends React.Component {
                             </footer>
                         </blockquote>
                         {/*Delete Button on click event will call method that will go to the server findByIdAndDelete and delete record*/}
-                        <Button variant="danger" onClick={this.DeleteCar}>Delete</Button>
+                        <Button variant="btn btn-lg btn-info" onClick={this.DeleteCar}>Delete</Button>
                         {/*Link to car referencing on the unique identifier ID*/}
                         <Link to={"/edit/" + this.props.car._id} className="btn btn-primary">Edit</Link>
                     </Card.Body>

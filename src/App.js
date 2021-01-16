@@ -14,6 +14,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { AddCars } from './components/addCars';
 import { AllCars } from './components/allCars';
+import { ToDoList } from './components/toDoList';
 import { Edit } from './components/edit';
 
 //class App that extends and will import class from react called Component
@@ -34,6 +35,7 @@ class App extends Component {
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/allCars">All Cars</Nav.Link>
               <Nav.Link href="/addCars">Add Cars</Nav.Link>
+              <Nav.Link href="/toDoList">Notes</Nav.Link>
             </Nav>
           </Navbar>
           <br />
@@ -45,6 +47,7 @@ class App extends Component {
             <Route path='/' component={Content} exact />
             <Route path='/addCars' component={AddCars} />
             <Route path='/allCars' component={AllCars} />
+            <Route path='/toDoList' component={ToDoList} />
             <Route path='/edit/:id' component={Edit}></Route>
           </Switch>
         </div>

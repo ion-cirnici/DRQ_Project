@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 //connection with mongoDb through constant ConnectionString
-const myConnectionString = 'mongodb+srv://admin1:admin1@cluster0.z6uzw.mongodb.net/cars?retryWrites=true&w=majority';
+const myConnectionString = 'mongo "mongodb+srv://cluster0.z6uzw.mongodb.net/cars" --username admin1';
 mongoose.connect(myConnectionString, { useNewUrlParser: true });
 
 //defindig Schema of the datatype that I want to store in the database and the GUI on the Database
@@ -90,7 +90,7 @@ app.post('/api/cars', (req, res) => {
     console.log(req.body.make);
     console.log(req.body.model);
 
-    CarModel.addCars({
+    CarModel.create({
         reg: req.body.reg,
         make: req.body.make,
         model: req.body.model
